@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euler's Number Calculate to nth digit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans text-slate-200">
+
+    <header class="p-6 text-center">
+        <h1 class="text-4xl font-extrabold tracking-tighter text-blue-400 text-glow">
+            $e$ <span class="text-slate-400 font-light text-2xl tracking-normal">to the Nth Digit</span>
+        </h1>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="glass w-full max-w-2xl rounded-3xl p-8 md:p-12 transition-all duration-500">
+            
+            <form action="/calc" method="post" class="space-y-6">
+                <div class="space-y-2">
+                    <label for="user_input" class="block text-sm font-medium text-blue-300 ml-1">Precision (Decimal Places)</label>
+                    <div class="flex gap-3">
+                        <input 
+                            type="number" 
+                            name="user_input" 
+                            id="user_input"
+                            placeholder="Enter a number (e.g. 50)"
+                            required
+                            class="flex-grow bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        >
+                        <button 
+                            type="submit" 
+                            class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition-all active:scale-95 shadow-lg shadow-blue-900/20"
+                        >
+                            Calculate
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            {% if result %}
+            <div class="mt-12 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500 ml-1">Resulting Constant</h2>
+                <div class="bg-black/40 rounded-2xl p-6 border border-blue-500/30 break-all font-mono text-xl leading-relaxed text-blue-100 selection:bg-blue-500 selection:text-white">
+                    {{ result }}
+                </div>
+                <p class="text-xs text-slate-500 italic text-right italic">Calculated using Taylor Series Expansion</p>
+            </div>
+            {% endif %}
+
+        </div>
+    </main>
+
+    <footer class="p-8 text-center text-slate-600 text-sm">
+        <p>&copy; 2026 Euler Explorer &bull; Base of Natural Logarithms</p>
+    </footer>
+
+</body>
+</html>
